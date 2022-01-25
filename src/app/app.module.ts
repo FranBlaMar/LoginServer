@@ -1,8 +1,14 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { ServersService } from './protected/servers/servers.service';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './AuthGuard.service';
+import { CanDeactivateGuard } from './protected/servers/edit-server/can-deactivate-guard.service';
+import { ServerResolver } from './protected/servers/server/server-resolver.service';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -10,9 +16,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [ServersService, AuthGuard, CanDeactivateGuard, ServerResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
